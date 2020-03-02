@@ -1,0 +1,11 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+body {
+  @apply antialiased bg-brand-blue-500;
+  font-family: "Montserrat";
+}
+
+@tailwind utilities;
