@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Search from "./components/Search";
 import SignUp from "./components/SignUp";
+import Hidden from "./components/Hidden";
 
 export default () => {
   return (
@@ -14,6 +15,9 @@ export default () => {
           </Route>
           <Route path="/signup">
             <SignUp></SignUp>
+          </Route>
+          <Route path="/hidden">
+            <Hidden></Hidden>
           </Route>
           <Route path="/">
             <Search></Search>

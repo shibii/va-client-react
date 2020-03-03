@@ -24,4 +24,8 @@ const search = parameters => {
   return api.get("api/vacancies?" + urlencoded).json();
 };
 
-export default { login, logout, signup, me, search };
+const getHidden = () => {
+  return api.get("api/vacancies/hidden").json();
+};
+
+export default { login, logout, signup, me, search, getHidden };
