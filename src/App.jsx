@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Search from "./components/Search";
 import SignUp from "./components/SignUp";
 import Hidden from "./components/Hidden";
+import Pinned from "./components/Pinned";
 
 export default () => {
   return (
@@ -18,6 +19,9 @@ export default () => {
           </Route>
           <Route path="/hidden">
             <Hidden></Hidden>
+          </Route>
+          <Route path="/pinned">
+            <Pinned></Pinned>
           </Route>
           <Route path="/">
             <Search></Search>

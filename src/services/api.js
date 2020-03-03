@@ -28,4 +28,8 @@ const getHidden = () => {
   return api.get("api/vacancies/hidden").json();
 };
 
-export default { login, logout, signup, me, search, getHidden };
+const getPinned = () => {
+  return api.get("api/vacancies/pinned").json();
+};
+
+export default { login, logout, signup, me, search, getHidden, getPinned };
