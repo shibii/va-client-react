@@ -25,15 +25,15 @@ export default props => {
         This service aggregates open vacancies from multiple finnish job listing
         sources and provides a simple search functionality. Aggregated vacancies
         are mostly from IT field and in Uusimaa region.
-        <button
-          className="ml-2 font-bold text-brand-secondary"
-          onClick={() => {
-            setShowRules(!showRules);
-          }}
-        >
-          How to search?
-        </button>
       </p>
+      <button
+        className="block m-auto mt-4 font-bold text-brand-secondary"
+        onClick={() => {
+          setShowRules(!showRules);
+        }}
+      >
+        How to search?
+      </button>
       <div className={classNames("mt-4 font-mono", { hidden: !showRules })}>
         {tips.map(tip => (
           <p className="p-1" key={tip.example}>

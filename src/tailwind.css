@@ -4,7 +4,7 @@
 /* purgecss end ignore */
 
 body {
-  @apply antialiased bg-brand-dark-500 text-brand-primary;
+  @apply antialiased bg-brand-dark-500 text-brand-primary tracking-wide;
   font-family: "Montserrat";
 }
 

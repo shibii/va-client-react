@@ -615,6 +615,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #2a2d34;
   color: #1098f7;
+  letter-spacing: 0.025em;
   font-family: "Montserrat";
 }
 

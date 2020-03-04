@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import qs from "qs";
+import classNames from "classnames";
 import api from "../services/api";
 import Results from "./Results";
 import SearchHeader from "./SearchHeader";
@@ -11,43 +12,45 @@ export default props => {
   const history = useHistory();
   const location = useLocation();
 
-  // when location changes makes an url encoded api call
-  useEffect(() => {
+  const apiQueryFromUrl = () => {
     const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
     setTerms(parsed.terms);
-    if (Object.entries(parsed).length !== 0) {
+    if (parsed.terms) {
       api
-        .search(parsed)
+        .fts(parsed)
         .then(res => {
           setVacancies(res);
         })
         .catch(err => history.push("/login"));
     }
+  };
+
+  // when location changes makes an url encoded api call
+  useEffect(() => {
+    apiQueryFromUrl();
   }, [history, location]);
 
   const search = event => {
     event.preventDefault();
-    if (terms.length !== 0) {
-      const urlencoded = qs.stringify({ terms });
-      history.push("?" + urlencoded);
-    }
+    const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
+    parsed.terms = terms;
+    parsed.offsetId = undefined;
+    parsed.limit = 20;
+    const urlencoded = qs.stringify(parsed);
+    history.push("?" + urlencoded);
+  };
+
+  const nextPage = event => {
+    event.preventDefault();
+    const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
+    parsed.offsetId = vacancies[vacancies.length - 1].id;
+    const urlencoded = qs.stringify(parsed);
+    history.push("?" + urlencoded);
+    window.scrollTo(0, 0);
   };
 
   const changeInVacancy = () => {
-    console.log("changeInVacancy");
-    const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
-    setTerms(parsed.terms);
-    if (Object.entries(parsed).length !== 0) {
-      api
-        .search(parsed)
-        .then(res => {
-          setVacancies(res);
-        })
-        .catch(err => {
-          console.log(err);
-          history.push("/login");
-        });
-    }
+    apiQueryFromUrl();
   };
 
   const onChange = event => {
@@ -73,6 +76,14 @@ export default props => {
       <div className="mt-2 shadow-xl">
         <Results vacancies={vacancies} onChange={changeInVacancy}></Results>
       </div>
+      <button
+        className={classNames("block m-auto text-brand-secondary", {
+          hidden: vacancies.length === 0
+        })}
+        onClick={nextPage}
+      >
+        next page
+      </button>
     </div>
   );
 };

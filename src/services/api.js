@@ -19,8 +19,8 @@ const me = () => {
   return api.get("api/me").json();
 };
 
-const search = parameters => {
-  const urlencoded = qs.stringify({ terms: parameters.terms });
+const fts = parameters => {
+  const urlencoded = qs.stringify(parameters);
   return api.get("api/vacancies?" + urlencoded).json();
 };
 
@@ -53,7 +53,7 @@ export default {
   logout,
   signup,
   me,
-  search,
+  fts,
   getHidden,
   getPinned,
   hide,

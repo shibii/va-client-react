@@ -41,12 +41,12 @@ export default props => {
   return (
     <div className="bg-brand-dark-700 p-2">
       <a href={url}>
-        <div className="text-center text-brand-light-300 text-xs">
+        <div className="text-center text-brand-primary text-xs tracking-widest">
           <span>{source}</span>
           <span> &middot; </span>
           <Moment format="D/M/YYYY" date={ts} />
         </div>
-        <div className="p-2 text-center truncate font-bold text-lg">
+        <div className="p-2 text-center truncate font-semibold text-brand-light-300 text-xl">
           {header}
         </div>
         <div className="text-center text-brand-primary">
