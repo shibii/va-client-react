@@ -32,4 +32,32 @@ const getPinned = () => {
   return api.get("api/vacancies/pinned").json();
 };
 
-export default { login, logout, signup, me, search, getHidden, getPinned };
+const hide = vacancyId => {
+  return api.post(`api/vacancies/${vacancyId}/hide`);
+};
+
+const unhide = vacancyId => {
+  return api.post(`api/vacancies/${vacancyId}/unhide`);
+};
+
+const pin = vacancyId => {
+  return api.post(`api/vacancies/${vacancyId}/pin`);
+};
+
+const unpin = vacancyId => {
+  return api.post(`api/vacancies/${vacancyId}/unpin`);
+};
+
+export default {
+  login,
+  logout,
+  signup,
+  me,
+  search,
+  getHidden,
+  getPinned,
+  hide,
+  unhide,
+  pin,
+  unpin
+};
