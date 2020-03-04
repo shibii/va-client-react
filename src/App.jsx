@@ -8,7 +8,7 @@ import Pinned from "./components/Pinned";
 
 export default () => {
   return (
-    <div className="m-auto w-full max-w-xl">
+    <div className="m-auto w-full max-w-4xl">
       <Router>
         <Switch>
           <Route path="/login">

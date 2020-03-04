@@ -17,13 +17,13 @@ export default props => {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto py-4 mt-20 bg-white shadow-2xl">
+    <div className="w-full max-w-sm mx-auto py-4 mt-20 bg-brand-dark-700 shadow-2xl">
       <form className="flex flex-col px-6" onSubmit={login}>
-        <label className="pt-4 font-bold text-sm" htmlFor="email">
+        <label className="pt-4 pb-1 font-bold text-sm" htmlFor="email">
           email
         </label>
         <input
-          className="p-2 appearance-none bg-brand-white font-bold text-lg shadow-inner"
+          className="p-2 appearance-none bg-brand-light-300 text-brand-dark-700 font-bold text-lg shadow-outline"
           id="email"
           type="text"
           value={email}
@@ -32,11 +32,11 @@ export default props => {
             setEmail(event.target.value);
           }}
         ></input>
-        <label className="pt-4 font-bold text-sm" htmlFor="password">
+        <label className="pt-4 pb-1 font-bold text-sm" htmlFor="password">
           password
         </label>
         <input
-          className="p-2 appearance-none bg-brand-white font-bold text-lg shadow-inner"
+          className="p-2 appearance-none bg-brand-light-300 text-brand-dark-700 font-bold text-lg shadow-outline"
           id="password"
           type="password"
           value={password}
@@ -45,14 +45,14 @@ export default props => {
             setPassword(event.target.value);
           }}
         ></input>
-        <p className="pt-4 text-center font-bold text-sm">
-          Dont have an account?{" "}
-          <Link className="text-brand-blue-500" to="/signup">
+        <p className="pt-4 text-center font-bold text-brand-light-300 text-sm">
+          Don't have an account?
+          <Link className="pl-1 text-brand-secondary" to="/signup">
             Register!
           </Link>
         </p>
         <input
-          className="p-2 bg-brand-blue-500 hover:text-white font-bold text-lg shadow-md cursor-pointer"
+          className="p-2 bg-brand-primary text-brand-dark-700 hover:text-white font-bold text-lg shadow-xl cursor-pointer"
           type="submit"
           value="login"
         ></input>
