@@ -33,6 +33,23 @@ export default props => {
     }
   };
 
+  const changeInVacancy = () => {
+    console.log("changeInVacancy");
+    const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
+    setTerms(parsed.terms);
+    if (Object.entries(parsed).length !== 0) {
+      api
+        .search(parsed)
+        .then(res => {
+          setVacancies(res);
+        })
+        .catch(err => {
+          console.log(err);
+          history.push("/login");
+        });
+    }
+  };
+
   const onChange = event => {
     setTerms(event.target.value);
   };
@@ -40,21 +57,21 @@ export default props => {
   return (
     <div className="my-10">
       <SearchHeader></SearchHeader>
-      <div className="mt-8 bg-white shadow-xl">
+      <div className="mt-8 shadow-xl">
         <form className="w-full" onSubmit={search}>
           <input
-            className="w-full p-2 font-bold text-lg truncate"
+            className="w-full p-2 bg-brand-dark-700 font-bold text-lg truncate"
             type="text"
             value={terms}
             onChange={onChange}
             placeholder="search..."
-            spellcheck="false"
+            spellCheck="false"
           ></input>
           <input className="hidden" type="submit"></input>
         </form>
       </div>
       <div className="mt-2 shadow-xl">
-        <Results vacancies={vacancies}></Results>
+        <Results vacancies={vacancies} onChange={changeInVacancy}></Results>
       </div>
     </div>
   );
