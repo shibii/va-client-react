@@ -58,12 +58,12 @@ export default props => {
   };
 
   return (
-    <div className="my-10">
+    <div className="my-4">
       <SearchHeader></SearchHeader>
       <div className="mt-8 shadow-xl">
         <form className="w-full" onSubmit={search}>
           <input
-            className="w-full p-2 bg-brand-light-300 font-bold text-brand-dark-500 text-lg truncate"
+            className="w-full p-2 bg-brand-light-300 font-bold text-brand-dark-500 text-lg truncate shadow-2xl"
             type="text"
             value={terms}
             onChange={onChange}
