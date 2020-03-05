@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import SignUp from "./components/SignUp";
 import Hidden from "./components/Hidden";
 import Pinned from "./components/Pinned";
+import SectionSelector from "./components/SectionSelector";
 
 export default () => {
   return (
@@ -15,15 +16,19 @@ export default () => {
             <Login></Login>
           </Route>
           <Route path="/signup">
+            <SectionSelector></SectionSelector>
             <SignUp></SignUp>
           </Route>
           <Route path="/hidden">
+            <SectionSelector></SectionSelector>
             <Hidden></Hidden>
           </Route>
           <Route path="/pinned">
+            <SectionSelector></SectionSelector>
             <Pinned></Pinned>
           </Route>
           <Route path="/">
+            <SectionSelector></SectionSelector>
             <Search></Search>
           </Route>
         </Switch>
