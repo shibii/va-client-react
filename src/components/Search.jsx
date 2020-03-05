@@ -63,17 +63,18 @@ export default props => {
       <div className="mt-8 shadow-xl">
         <form className="w-full" onSubmit={search}>
           <input
-            className="w-full p-2 bg-brand-dark-700 font-bold text-lg truncate"
+            className="w-full p-2 bg-brand-light-300 font-bold text-brand-dark-500 text-lg truncate"
             type="text"
             value={terms}
             onChange={onChange}
             placeholder="search..."
+            name="search"
             spellCheck="false"
           ></input>
           <input className="hidden" type="submit"></input>
         </form>
       </div>
-      <div className="mt-2 shadow-xl">
+      <div className="mt-10 shadow-xl">
         <Results vacancies={vacancies} onChange={changeInVacancy}></Results>
       </div>
       <button
