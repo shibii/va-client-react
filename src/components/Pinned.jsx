@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import qs from "qs";
 import api from "../services/api";
 import Results from "./Results";
 
 export default props => {
   const [vacancies, setVacancies] = useState([]);
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
+    const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
     api
-      .getPinned()
+      .getPinned(parsed)
       .then(res => {
         setVacancies(res);
       })
       .catch(err => history.push("/login"));
-  }, [history]);
+  }, [history, location]);
 
   const onChange = () => {
+    const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
     api
-      .getPinned()
+      .getPinned(parsed)
       .then(res => {
         setVacancies(res);
       })

@@ -29,8 +29,9 @@ const getHidden = parameters => {
   return api.get("api/vacancies/hidden?" + urlencoded).json();
 };
 
-const getPinned = () => {
-  return api.get("api/vacancies/pinned").json();
+const getPinned = parameters => {
+  const urlencoded = qs.stringify(parameters);
+  return api.get("api/vacancies/pinned?" + urlencoded).json();
 };
 
 const hide = vacancyId => {
