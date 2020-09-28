@@ -1,40 +1,55 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import Moment from "react-moment";
+import { parse, format, formatDistanceToNow, differenceInDays } from "date-fns";
 import classNames from "classnames";
 import api from "../services/api";
 
-export default props => {
+const generateTimestamp = (ts) => {
+  let time = parse(
+    // remove millisecond suffix
+    ts.replace(/\.[^.]*$/, ""),
+    "yyyy-MM-dd HH:mm:ss",
+    new Date()
+  );
+
+  if (differenceInDays(new Date(), time) < 4) {
+    return formatDistanceToNow(time, { addSuffix: true });
+  } else {
+    return format(time, "d/M/Y");
+  }
+};
+
+export default (props) => {
   const { id, header, url, source, ts, hidden, pinned } = props.vacancy;
   let history = useHistory();
 
-  const handleHide = event => {
+  const handleHide = (event) => {
     event.preventDefault();
     if (hidden) {
       api
         .unhide(id)
-        .then(res => props.onChange())
-        .catch(err => history.push("/login"));
+        .then((res) => props.onChange())
+        .catch((err) => history.push("/login"));
     } else {
       api
         .hide(id)
-        .then(res => props.onChange())
-        .catch(err => history.push("/login"));
+        .then((res) => props.onChange())
+        .catch((err) => history.push("/login"));
     }
   };
 
-  const handlePin = event => {
+  const handlePin = (event) => {
     event.preventDefault();
     if (pinned) {
       api
         .unpin(id)
-        .then(res => props.onChange())
-        .catch(err => history.push("/login"));
+        .then((res) => props.onChange())
+        .catch((err) => history.push("/login"));
     } else {
       api
         .pin(id)
-        .then(res => props.onChange())
-        .catch(err => history.push("/login"));
+        .then((res) => props.onChange())
+        .catch((err) => history.push("/login"));
     }
   };
 
@@ -44,7 +59,7 @@ export default props => {
         <div className="text-center text-brand-primary text-xs tracking-widest">
           <span>{source}</span>
           <span> &middot; </span>
-          <Moment format="D/M/YYYY" date={ts} />
+          <span>{generateTimestamp(ts)}</span>
         </div>
         <div className="p-2 text-center truncate font-semibold text-brand-light-300 text-xl">
           {header}
